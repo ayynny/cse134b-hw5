@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>No JS Form - Contact Me</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/nav-container.css">
+  <link rel="stylesheet" href="/css/contact.css">
+  <style>
+    input:invalid {
+      border: 2px solid red;
+    }
+    input:valid {
+      border: 2px solid green;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-container">
+    <a href="home.html">Home</a>
+    <a href="about-me.html">About Me</a>
+    <a href="academics.html">Academics</a>
+    <a href="work.html">Work</a>
+    <a href="contact.html">Contact Me</a>
+  </nav>
+  <h1>No JS Form - Contact Me</h1>
+  <form id="contact-form" class="contact-container" action="http://localhost/post" method="post">
+    <label for="fname">First name:</label><br>
+    <input type="text" id="fname" name="fname" required><br>
+
+    <label for="lname">Last name:</label><br>
+    <input type="text" id="lname" name="lname" required><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="comments">Comments (optional):</label><br>
+    <input type="text" id="comments" name="comments" 
+           minlength="10" maxlength="250" 
+           pattern="[A-Za-z0-9\s,\.!?\-']*"><br>
+
+    <input type="hidden" id="possible_bot" name="possible_bot" value="true"> 
+
+    <output name="error-message" id="error-message" for="email"></output> <br>
+    <output name="info" id="info" for="comments"></output> <br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <footer class="contact-container">
+    <a href="https://www.instagram.com/annyyzhao" target="_blank">
+      <img src="/media/instagram.png" alt="Instagram Profile">
+    </a>
+  </footer>
+</body>
+</html>

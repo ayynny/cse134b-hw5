@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Contact Me</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/nav-container.css">
+  <link rel="stylesheet" href="/css/contact.css">
+  <link rel="stylesheet" href="/css/theme-switcher.css">
+  <style>
+    input:invalid, textarea:invalid {
+      border: 2px solid red;
+    }
+    input:valid, textarea:valid {
+      border: 2px solid green;
+    }
+    .flash {
+      animation: flash 0.5s;
+    }
+    @keyframes flash {
+      0% { background-color: #ffcccc; }
+      100% { background-color: inherit; }
+    }
+    .warning {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav-container">
+    <a href="home.html">Home</a>
+    <a href="about-me.html">About Me</a>
+    <a href="academics.html">Academics</a>
+    <a href="work.html">Work</a>
+    <a href="contact.html">Contact Me</a>
+    <button id="theme-toggle-btn" aria-label="Toggle Theme"></button>
+
+  </nav>
+  <h1>Contact Me</h1>
+  <noscript>
+    <noscript>
+      <div style="color: red; text-align: center; padding: 10px;">
+        Note: Theme switching functionality requires JavaScript.
+      </div>
+    </noscript>
+  </noscript>
+  <form id="contact-form" class="contact-container" action="http://localhost/post" method="post">
+    <label for="fname">First name [required]:</label><br>
+    <input type="text" id="fname" name="fname" required><br>
+
+    <label for="lname">Last name [required]:</label><br>
+    <input type="text" id="lname" name="lname" required><br>
+
+    <label for="email">Email [required]:</label><br>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="comments">Comments:</label><br>
+
+    <textarea id="comments" name="comments" rows="4" cols="50" minlength="10" maxlength="250"></textarea>
+    <div id="char-count">250 characters remaining</div><br>
+
+    <input type="hidden" id="possible_bot" name="possible_bot" value="true">
+    <input type="hidden" id="form-errors" name="form-errors" value="">
+
+    <output name="error-message" id="error-message"></output> <br>
+    <output name="info" id="info"></output> <br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <footer class="contact-container">
+    <a href="https://www.instagram.com/annyyzhao" target="_blank">
+      <img src="/media/instagram.png" alt="Instagram Profile">
+    </a>
+  </footer>
+
+  <script src="/js/theme-switcher.js" defer></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.getElementById("contact-form");
+      const email = document.getElementById("email");
+      const comments = document.getElementById("comments");
+      const errorOutput = document.getElementById("error-message");
+      const infoOutput = document.getElementById("info");
+      const charCountDisplay = document.getElementById("char-count");
+      const formErrorsInput = document.getElementById("form-errors");
+
+      let form_errors = [];
+
+      const allowedPattern = /^[A-Za-z0-9\s,\.!?\-']*$/;
+      const maxChars = 250; 
+
+      // masking mechanism, character countdown
+      comments.addEventListener("input", function(event) {
+        let value = comments.value;
+
+        // check for illegal characters by testing the entire value
+        if (!allowedPattern.test(value)) {
+          // remove any illegal characters
+          const sanitized = value.split('').filter(char => allowedPattern.test(char)).join('');
+          comments.value = sanitized;
+
+          // indicate error
+          comments.classList.add("flash");
+          const message = "Illegal character entered.";
+          errorOutput.textContent = message;
+
+          // capture this error in the error array
+          form_errors.push({ field: "comments", error: message, value: value });
+
+          // remove flash effect after animation, then fade out the error message
+          setTimeout(() => {
+            comments.classList.remove("flash");
+            errorOutput.style.transition = "opacity 2s";
+            errorOutput.style.opacity = "0";
+            setTimeout(() => {
+              errorOutput.textContent = "";
+              errorOutput.style.opacity = "1";
+              errorOutput.style.transition = "";
+            }, 2000);
+          }, 500);
+        }
+
+        // update character countdown
+        const remaining = maxChars - comments.value.length;
+        charCountDisplay.textContent = remaining + " characters remaining";
+        if (remaining <= 10) {
+          charCountDisplay.classList.add("warning");
+        } else {
+          charCountDisplay.classList.remove("warning");
+        }
+
+        // character limit
+        if (comments.value.length > maxChars) {
+          const message = "Character limit exceeded.";
+          comments.setCustomValidity(message);
+          form_errors.push({ field: "comments", error: message, value: comments.value });
+        } else {
+          comments.setCustomValidity("");
+        }
+      });
+
+      // validation for email
+      email.addEventListener("input", function() {
+        if (!email.checkValidity()) {
+          const message = "Please enter a valid email address.";
+          email.setCustomValidity(message);
+          errorOutput.textContent = message;
+          form_errors.push({ field: "email", error: message, value: email.value });
+        } else {
+          email.setCustomValidity("");
+          errorOutput.textContent = "";
+        }
+      });
+
+      // capture errors and submit as JSON
+      form.addEventListener("submit", function(e) {
+        formErrorsInput.value = JSON.stringify(form_errors);
+        console.log("Form errors:", form_errors);
+      });
+    });
+  </script>
+</body>
+</html>

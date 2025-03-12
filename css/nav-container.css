@@ -1,0 +1,21 @@
+.nav-container {
+    display: flex;
+    gap: 15px; 
+    white-space: nowrap; 
+    overflow-x: auto;
+    padding: 10px;
+    font-family: Garamond, serif;
+    color: inherit;
+    justify-content: flex-end;
+    background-color: #FFF2F2;
+}
+
+h1{
+    text-align: center;
+}
+
+body{
+    font-family: Garamond, serif;
+    background-color: #FFF2F2;
+    color: #2D336B;
+}

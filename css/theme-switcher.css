@@ -1,0 +1,22 @@
+:root {
+    --bg-color: #FFF2F2;
+    --text-color: #2D336B;
+    --border-color: #2D336B;
+  }
+
+  [data-theme="dark"] {
+    --bg-color: #2D336B;
+    --text-color: #FFF2F2;
+    --border-color: #FFF2F2;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  #theme-toggle-btn {
+    cursor: pointer;
+    display: none; 
+
+  }
