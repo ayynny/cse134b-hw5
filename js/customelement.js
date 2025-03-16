@@ -101,17 +101,17 @@ customElements.define('project-card', ProjectCard);
 function populateCards(projects) {
   console.log("Populating this array into cards: " + projects);
   const cardContainer = document.getElementById('cardContainer');
-  cardContainer.innerHTML = ''; // Clear existing cards before adding new ones
+  cardContainer.innerHTML = ''; // clear existing cards before adding new ones
 
   projects.forEach(project => {
-    const card = document.createElement('project-card'); // Create a new custom element
-    card.data = project; // Assign the project data to the card
-    cardContainer.appendChild(card); // Append to the container
+    const card = document.createElement('project-card'); // create a new custom element
+    card.data = project; // assign the project data to the card
+    cardContainer.appendChild(card); // append to the container
   });
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // Fetch and store data if localStorage is empty
+  // fetch and store data if localStorage is empty
   let storedData = JSON.parse(localStorage.getItem('projectCards'));
   if (!storedData || storedData.length === 0) {
     console.log("No local data found. Storing predefined JSON...");
@@ -121,30 +121,27 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
-/**
- * Stores the predefined JSON (myJson) into localStorage.
- */
+
+ //stores the predefined JSON (myJson) into localStorage.
 async function fetchAndStoreProjects() {
   try {
-    localStorage.setItem('projectCards', JSON.stringify(myJson)); // Store predefined JSON
-    return myJson; // Return JSON data for immediate use
+    localStorage.setItem('projectCards', JSON.stringify(myJson)); // store predefined JSON
+    return myJson; 
   } catch (error) {
     console.error('Error storing projects:', error);
-    return []; // Return empty array in case of an error
+    return []; 
   }
 }
 
-/**
- * Loads stored card data from localStorage and populates the page.
- */
+
+// Loads stored card data from localStorage and populates the page.
 function localLoad() {
   const projects = JSON.parse(localStorage.getItem('projectCards')) || [];
   populateCards(projects);
 }
 
-/**
- * Fetches JSON from jsonbin.io and stores it in localStorage.
- */
+
+ // Fetches JSON from jsonbin.io and stores it in localStorage.
 async function fetchFromRemote() {
   try {
     const response = await fetch('https://api.jsonbin.io/v3/b/67d75b498561e97a50ed54cf', {
@@ -157,22 +154,22 @@ async function fetchFromRemote() {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    const result = await response.json(); // Convert response to JSON
-    const data = result.record; // jsonbin.io stores it inside 'record'
-    return data; // Return fetched data
+    const result = await response.json(); // convert response to JSON
+    const data = result.record; // jsonbin.io stores inside 'record'
+    return data;
   } catch (error) {
     console.error('Error fetching remote JSON:', error);
-    return []; // Return empty array in case of an error
+    return []; 
   }
 }
 
 async function remoteLoad() {
   try {
-    const data = await fetchFromRemote(); // Wait for the remote JSON data
+    const data = await fetchFromRemote(); 
     console.log("Fetched remote data:", data);
 
     if (data.length > 0) {
-      populateCards(data); // Populate UI with fetched data
+      populateCards(data); 
     } else {
       console.warn("No data found in remote JSON.");
     }

@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Project Portfolio</title>
+  <title>Custom Element</title>
+  <link rel="stylesheet" href="/css/nav-container.css">
+  <link rel="stylesheet" href="/css/theme-switcher.css">
   <style>
-    /* CSS variables for card styling */
     :root {
       --card-bg: #fff;
       --card-border: #ccc;
@@ -14,7 +15,6 @@
       --card-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       --grid-gap: 1rem;
     }
-    /* Grid layout for the card container */
     .card-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -23,12 +23,35 @@
     }
   </style>
 </head>
+
+
+<noscript>
+<div style="color: red; text-align: center; padding: 10px;">
+  Note: Theme switching functionality requires JavaScript.
+</div>
+</noscript>
+
+
+
+
 <body>
+    <header>
+        <nav class="nav-container">
+            <a href = "home.html">Home</a>
+            <a href="about-me.html">About Me</a>
+            <a href="academics.html">Academics</a>
+            <a href="work.html">Work</a>
+            <a href="contact.html" >Contact Me</a>
+            <a href = "customelement.html">Custom Elements</a>
+            <button id="theme-toggle-btn" aria-label="Toggle Theme"></button>
+    
+        </nav>
+    </header>
+
+    
   <button onclick="localLoad()">Load Local</button>
   <button onclick="remoteLoad()">Load Remote</button>
-  <!-- Container to hold our dynamically created cards -->
   <div class="card-container" id="cardContainer"></div>
-  <!-- Include the JavaScript file that defines and creates the custom elements -->
   <script src="./js/customelement.js"></script>
 </body>
 </html>
