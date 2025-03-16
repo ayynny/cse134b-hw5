@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project Portfolio</title>
+  <style>
+    /* CSS variables for card styling */
+    :root {
+      --card-bg: #fff;
+      --card-border: #ccc;
+      --card-padding: 1rem;
+      --card-margin: 1rem;
+      --card-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      --grid-gap: 1rem;
+    }
+    /* Grid layout for the card container */
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: var(--grid-gap);
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="localLoad()">Load Local</button>
+  <button onclick="remoteLoad()">Load Remote</button>
+  <!-- Container to hold our dynamically created cards -->
+  <div class="card-container" id="cardContainer"></div>
+  <!-- Include the JavaScript file that defines and creates the custom elements -->
+  <script src="./js/customelement.js"></script>
+</body>
+</html>
