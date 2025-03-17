@@ -2,7 +2,7 @@ let myJson = [
   {
     "title": "Rambo and I!",
     "imageWebp": "media/meandrambo.webp",
-    "image": "media/meandrambo.jpg?v=1",
+    "image": "media/meandrambo.jpg?v=2",
     "imageAlt": "A picture of the author and her Yorkie dog at a lake",
     "description": "Rambo's first time at the lake!",
     "link": "https://example.com/projectA"
