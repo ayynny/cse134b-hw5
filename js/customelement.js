@@ -1,10 +1,10 @@
 let myJson = [
   {
-    "title": "Test Project A",
-    "imageWebp": "images/testA.webp",
-    "image": "images/testA.jpg",
-    "imageAlt": "Screenshot of Project A",
-    "description": "Description of Project A.",
+    "title": "Rambo and I!",
+    "imageWebp": "media/meandrambo.webp",
+    "image": "media/meandrambo.webp",
+    "imageAlt": "A picture of the author and her Yorkie dog at a lake",
+    "description": "Rambo's first time at the lake!",
     "link": "https://example.com/projectA"
   },
   {
