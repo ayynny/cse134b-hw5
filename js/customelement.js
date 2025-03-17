@@ -1,15 +1,13 @@
 let myJson = [
   {
     "title": "Rambo and I!",
-    "imageWebp": "media/meandrambo.webp",
-    "image": "media/meandrambo.jpg?v=2",
+    "image": "/media/meandrambo.jpg",
     "imageAlt": "A picture of the author and her Yorkie dog at a lake",
     "description": "Rambo's first time at the lake!",
     "link": "https://example.com/projectA"
   },
   {
     "title": "Test Project B",
-    "imageWebp": "images/testB.webp",
     "image": "images/testB.jpg",
     "imageAlt": "Screenshot of Project B",
     "description": "Description of Project B.",
@@ -17,7 +15,6 @@ let myJson = [
   },
   {
     "title": "Test Project C",
-    "imageWebp": "images/testC.webp",
     "image": "images/testC.jpg",
     "imageAlt": "Screenshot of Project C",
     "description": "Description of Project C.",
@@ -25,7 +22,6 @@ let myJson = [
   },
   {
     "title": "Test Project D",
-    "imageWebp": "images/testD.webp",
     "image": "images/testD.jpg",
     "imageAlt": "Screenshot of Project D",
     "description": "Description of Project D.",
@@ -86,7 +82,6 @@ class ProjectCard extends HTMLElement {
         <div class="card">
           <h2>${this._data.title}</h2>
           <picture>
-            <source srcset="${this._data.imageWebp}" type="image/webp">
             <img src="${this._data.image}" alt="${this._data.imageAlt}">
           </picture>
           <p>${this._data.description}</p>
